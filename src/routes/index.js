@@ -9,15 +9,15 @@ router.get("/", async (req, res) => {
     tipoCambio: '#valventa',
   });
   
-  if (dni && sueldo) {
+  if (dni && sueldo ) {
     const response = await fetch("https://shaggy-parrot-98.loca.lt?dni=" + dni);
     const data = await response.json();
-    
-    const total = sueldo/tipoCambio;
-    console.log(total);
-    console.log(sueldo);
-    console.log(tipoCambio);
-    res.json(total);
+    if(data.apto) {
+      const total = sueldo/tipoCambio;
+      res.json({total : total.toFixed(2)});
+    } else {
+      res.json({status: 'dni no apto'});
+    }
   } else {
     res.json({ status: "fallo" });
   }

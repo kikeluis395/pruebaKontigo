@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const fetch = require('node-fetch');
 
  
 app.set('port', process.env.PORT || 3000);
